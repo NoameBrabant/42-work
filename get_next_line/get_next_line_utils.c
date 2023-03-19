@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 11:08:18 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/19 13:53:06 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:38:48 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int ft_strchr(char *str, char c)
     int i;
 
     i = 0;
-    while (str)
+    while (str[i] != '\0')
     {
-        if (c = str[i])
+        //printf("here4, %d", i);
+        if (c == str[i])
             return (i);
+        i++;
     }
     return(-1);
 }
@@ -31,12 +33,12 @@ int ft_strlen(char *str)
     if (!str)
         return(-1);
     len = 0;
-    while (str)
+    while (str[len])
         len++;
     return (len);
 }
 
-void ft_strjoin(char *left, char *right)
+char *ft_strjoin(char *left, char *right)
 {
     char    *new;
     int     i;
@@ -44,19 +46,20 @@ void ft_strjoin(char *left, char *right)
 
     i = 0;
     new = malloc((ft_strlen(left) + ft_strlen(right)) * sizeof(char) + 1);
-    while (i < ft_strlen(left))
+    while (left[i])
     {
+        //printf("here2");
         new[i] = left[i];
         i++;
     }
-    free(left);
     j = 0;
-     while (i < ft_strlen(right) + ft_strlen(left))
+    while (right[j])
     {
+        //printf("here3");
         new[i] = right[j];
         j++;
         i++;
     }
-    free(right);
     new[i] = '\0';
+    return(new);
 }

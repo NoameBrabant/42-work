@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:18:16 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/19 13:42:58 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:04:17 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,92 @@
 char *get_next_line(int fd)
 {
     static char     *stash;
-    char            buff[BUFFER_SIZE];
+    char            buff[BUFFER_SIZE + 1];
     char            *res;
     char            *truc;
+    char            *tmp;
     int             i;
     int             t;
     int             n;
     int             j;
     
-    res = malloc(0);
+    t = BUFFER_SIZE;
+    res = malloc(9);
+   /* i = 0;
+    while (i < 8)
+    {
+        res[i] ='a' +i;
+        i++;
+    }
+    res[i] = '\0';*/
+    printf("On a alloue res\n");
+    printf(C_RED"%s\n"C_NOR, res);
+    printf(C_BLU"%s\n\n"C_NOR, stash);
     if (!stash)
-        stash = malloc(0);
+    {
+        //printf("ici");
+        stash = malloc(1);
+        stash[0] = '\0'; 
+        //printf("here");
+    }
+    printf("On a alloue stash\n");
+    printf(C_RED"%s\n"C_NOR, res);
+    printf(C_BLU"%s\n\n"C_NOR, stash);
     if (ft_strchr(stash, '\n') == -1)
     {
-        ft_strjoin(res, stash);
+        tmp = ft_strjoin(res, stash);
+        free(res);
+        stash[0] = '\0';
+        //free(stash);
+        //stash = NULL;
+        res = tmp;
+        printf("On join stash et res\n");
+        printf(C_RED"%s\n"C_NOR, res);
+        printf(C_BLU"%s\n"C_NOR, stash);
+        printf(C_GRE"%s\n\n"C_NOR, tmp);
+        tmp = NULL;
         n = ft_strchr(res, '\n');
-        while (n == -1 && t != BUFFER_SIZE)
+        while (n == -1 && t == BUFFER_SIZE)
         {
+            //printf("oui1");
             t = read(fd, buff, BUFFER_SIZE);
-            ft_strjoin(res, buff);
+            buff[t] = '\0';
+            tmp = ft_strjoin(res, buff);
+            free(res);
+            res = tmp;
+            printf("On est en train de remplir res\n");
+            printf(C_RED"%s\n"C_NOR, res);
+            printf(C_BLU"%s\n\n"C_NOR, stash);
+          //  free(tmp);
+            n = ft_strchr(res, '\n');
         }
+        printf("On est avant de remplir stash\n");
+        printf(C_RED"%s\n"C_NOR, res);
+        printf(C_BLU"%s\n\n"C_NOR, stash);
         i = 0;
         n = ft_strchr(res, '\n');
-        while (res[n] != -1 && res[n + i])
+        //printf("\nn ===== %d || res ===== %c\n", n, res[n - 1]);
+        while (res[n + i + 1])
         {
-            stash[i] = res[ft_strchr(res, '\n') + i];
+            //printf("oui2");
+            stash[i] = res[n + i + 1];
             i++;
         }
-        i = ft_strlen(res);
-        while (i >= n)
+       // stash = ft_stash(res, n);
+        //printf("\nn ===== %d || res[n] ===== %c\n", n, res[n - 1]);
+        printf("On a fini de remplir stash\n");
+        printf(C_RED"%s\n"C_NOR, res);
+        printf(C_BLU"%s\n\n"C_NOR, stash);
+        i = ft_strlen(res) - 1;
+        while (i > n)
         {
+            //printf("oui3");
             res[i] = '\0';
             i--;
         }
+        printf("On est a la fin\n");
+        printf(C_RED"%s\n"C_NOR, res);
+        printf(C_BLU"%s\n\n"C_NOR, stash);
         return (res);
     }
     else
@@ -56,6 +109,7 @@ char *get_next_line(int fd)
         i = 0;
         while (stash[i] != '\n')
         {
+            printf("oui4");
             res[i] = stash[i];
             i++;
         }
@@ -64,15 +118,18 @@ char *get_next_line(int fd)
         truc = malloc(sizeof(char) * ft_strlen(stash) + 1);
         while (stash[i])
         {
+            printf("oui5");
             truc[j] = stash[i];
             j++;
             i++;
         }
-        free(stash);
+        if (stash)
+            free(stash);
         stash = malloc(j * sizeof(char) + 1);
         j = 0;
         while(stash[j])
         {
+            printf("oui5");
             stash[j] = truc[j];
             j++;
         }
