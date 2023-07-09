@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:18:16 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/27 15:11:46 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:15:59 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,20 @@ char	*restnextline(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (!stash)
+	if (!stash[fd])
 	{
-		stash = malloc(BUFFER_SIZE);
-		stash[0] = '\0';
+		stash[fd] = malloc(BUFFER_SIZE);
+		stash[fd][0] = '\0';
 	}
-	stash = readnextline(fd, stash);
-	if (!stash)
+	stash[fd] = readnextline(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	res = putnextline(stash);
-	stash = restnextline(stash);
+	res = putnextline(stash[fd]);
+	stash[fd] = restnextline(stash[fd]);
 	return (res);
 }

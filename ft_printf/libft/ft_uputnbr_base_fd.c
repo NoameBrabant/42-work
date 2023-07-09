@@ -6,12 +6,12 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/19 21:32:30 by schapuis          #+#    #+#             */
-/*   Updated: 2023/03/16 15:38:02 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:32:01 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//
+
 int	check_base(char *base);
 
 static int	nbr_final_size(unsigned long nbr, int size_base)
@@ -27,6 +27,13 @@ static int	nbr_final_size(unsigned long nbr, int size_base)
 		i++;
 	}
 	return (i);
+}
+
+void	writenbr(int i, char *base, int *nbr_final, int fd)
+{		
+	while (--i >= 0)
+		ft_putchar_fd(base[nbr_final[i]], fd);
+	free(nbr_final);
 }
 
 int	ft_uputnbr_base_fd(unsigned long nbr, char *base, int fd)
@@ -52,9 +59,7 @@ int	ft_uputnbr_base_fd(unsigned long nbr, char *base, int fd)
 			nbr = nbr / size_base;
 			i++;
 		}
-		while (--i >= 0)
-			ft_putchar_fd(base[nbr_final[i]], fd);
-		free(nbr_final);
+		writenbr(i, base, nbr_final, fd);
 	}
 	return (len);
 }

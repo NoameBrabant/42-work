@@ -6,7 +6,7 @@
 /*   By: schapuis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/19 21:32:30 by schapuis          #+#    #+#             */
-/*   Updated: 2023/03/15 11:20:55 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:33:16 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_base(char *base)
 	return (1);
 }
 
-long long check_neg(long long nbr, int fd)
+long long	check_neg(long long nbr, int fd)
 {
 	if (nbr < 0)
 	{			
@@ -62,7 +62,7 @@ static int	nbr_final_size(long long nbr, int size_base)
 	return (i);
 }
 
-int	ft_putnbr_base_fd(long long nbr,  char *base, int fd)
+int	ft_putnbr_base_fd(long long nbr, char *base, int fd)
 {
 	int		size_base;
 	int		*nbr_final;

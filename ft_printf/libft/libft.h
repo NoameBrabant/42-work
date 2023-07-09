@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:04:53 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/15 18:09:24 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:15:01 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_lstsize(t_list *lst);
 int		ft_putnbr_base_fd(long long nbr, char *base, int fd);
-int		ft_uputnbr_base_fd(unsigned long nbr, char *base, int fd); 
+int		ft_uputnbr_base_fd(unsigned long nbr, char *base, int fd);
 int		ft_nbrlen(long long nbr);
 int		ft_putnbr_fd(long long n, int fd);
 int		ft_uputnbr_fd(unsigned long n, int fd);
