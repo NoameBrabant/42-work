@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:31:40 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/08 17:22:54 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:28:27 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 
 int	checkNULL(va_list args, char symbol)
 {
-	if (symbol == s)
+	if (symbol == 's')
 	{
 		if (va_arg(args, unsigned long) == NULL)
-			return(ft_putstr_fd("(null)", 1)
+			return(ft_putstr_fd("(null)", 1));
 		return (ft_putstr_fd(va_arg(args, char *), 1));	
 	}
-	if (symbol == p)
+	if (symbol == 'p')
 	{
 		if (va_arg(args, unsigned long) == NULL)
-			return(ft_putstr_fd("(nil)", 1)
+			return(ft_putstr_fd("(nil)", 1));
 		return (ft_putaddress_fd(va_arg(args, unsigned long), 1));	
 	}
 	return (0);
