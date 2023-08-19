@@ -6,31 +6,30 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/06 09:28:07 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:29:35 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include "libft/libft.h"
 
-int	get_length(char **str)
+void	ft_error(void)
+{
+	ft_printf("Error\n");
+	exit(0);
+}
+
+int	ft_get_length(char **str)
 {
 	int	i;
-	int	y;
 
 	i = 0;
-	y = 0;
 	while (str[i])
-	{
-		while (str[i][y])
-			y++;
-		y++;
 		i++;
-	}
 	return (i);
 }
 
-int *addnumbers(char *input)
+int *ft_splitnumbers(char *input)
 {
 	char	**temp;
 	int		*output;
@@ -38,38 +37,77 @@ int *addnumbers(char *input)
 
 	i = 0;
 	temp = ft_split(input, ' ');
-	output = ft_calloc(get_length(temp), sizeof(int));
+	i = 0;
+	output = ft_calloc(ft_get_length(temp) + 1, sizeof(int));
 	while (temp[i])
+	{
+		if (ft_isnum(temp[i]) == 0)
+		{
+			free(output);
+			ft_error();
+		}
 		output[i] = ft_atoi(temp[i]);
+		if (output[i] == '\0')
+		{			
+			free(output);
+			ft_error();
+		}
+		i++;
+	}
 	return (output);
 }
 
-int	*create_list_numbers(int size_input, char **input)
+void	ft_istwin(int *tab)
+{
+	int i;
+	int y;
+
+	y = 0;
+	while (tab[y])
+	{
+		i = y + 1;
+		while (tab[i])
+		{
+			if(tab[y] == tab[i])
+			{
+				free(tab);
+				ft_error();
+			}
+			i++;
+		}
+		y++;
+	}
+}
+
+int	*ft_create_list_numbers(int size_input, char **input)
 {
 	int		*output;
-	char	*jointemp;
-	char	**temp;
 	int		i;
 
-	if (size_input == 1)
-		output = addnumbers(input[1]);
+	i = 0;
+	if (size_input == 2)
+	{
+		output = ft_splitnumbers(input[1]);
+	}
 	else
 	{
-		//temp = malloc(sizeof(input) - sizeof(input[0]));
-		temp = ft_calloc(get_length(input) + 1, sizeof(char *));
-		while (i < size_input)
+		output = ft_calloc(size_input, sizeof(int));
+		while (input[i + 1])
 		{
-			temp[i] = input[i + 1];
+			if (ft_isnum(input[i + 1]) == 0)
+			{	
+				free(output);
+				ft_error();
+			}
+			output[i] = ft_atoi(input[i + 1]);
+			if (output[i] == '\0')
+			{			
+				free(output);
+				ft_error();
+			} 
 			i++;
 		}
-		jointemp = ft_calloc(get_length(temp) + 1, sizeof(char));
-		i = 0;
-		while (temp[i])
-		{
-			ft_strlcat(jointemp, temp[i], ft_strlen(temp[i] - 1));
-			i++;
-		}
-		output = addnumbers(jointemp);
 	}
+	ft_istwin(output);
 	return (output);
 }

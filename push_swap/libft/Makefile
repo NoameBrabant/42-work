@@ -6,19 +6,13 @@
 #    By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 17:53:32 by nbrabant          #+#    #+#              #
-#    Updated: 2023/08/06 13:55:49 by nbrabant         ###   ########.fr        #
+#    Updated: 2023/08/10 18:35:42 by nbrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	libftprintf.a
-
-NAME2		= 	exec
-
+NAME		= 	libft.a
 FLAG 		= 	-Wall -Werror -Wextra
-
-DIR 		=	libft/
-
-SRC			=   ft_toupper.c		\
+SRC 		=   ft_toupper.c		\
 				ft_substr.c			\
 				ft_strlcpy.c		\
 				ft_memset.c			\
@@ -56,26 +50,37 @@ SRC			=   ft_toupper.c		\
 				ft_nbrlen.c			\
 				ft_putaddress_fd.c	\
 				ft_uputnbr_base_fd.c\
-				ft_uputnbr_fd.c
+				ft_uputnbr_fd.c		\
+				ft_printf.c 		\
 
-OBJ			=	$(addprefix $(DIR), $(SRC:.c=.o))
-				
+BONUS		=	ft_lstnew.c 		\
+				ft_lstadd_front.c	\
+				ft_lstsize.c		\
+				ft_lstlast.c		\
+				ft_lstadd_back.c	\
+				ft_lstdelone.c		\
+				ft_lstclear.c		\
+				ft_lstiter.c		\
+				ft_lstmap.c			\
+
+OBJ			=	$(SRC:.c=.o)
+
+OBJ_BONUS	=	$(BONUS:.c=.o)
+
 all: $(NAME)
 
-$(NAME): ft_printf.o 
-		make -C libft
-		ar rcs $@ $^ $(OBJ)
+$(NAME):	$(OBJ)
+		ar rcs $@ $^
 
-.c.o: 
-		gcc $(FLAG) -c $< -o $(<:.c=.o) 
-
+.c.o:
+		gcc $(FLAG) -c $< -o $(<:.c=.o)
+	
 clean:
-		make -C libft clean
-		rm -rf ft_printf.o
-
-fclean: 
-		make -C libft fclean
-		rm -rf ft_printf.o
-		rm -rf libftprintf.a
+		rm -f $(OBJ) $(OBJ_BONUS)
+fclean: clean
+		rm -f $(NAME) 
 
 re:		fclean all
+
+bonus: $(OBJ_BONUS)
+		ar rcs libft.a $(OBJ_BONUS)

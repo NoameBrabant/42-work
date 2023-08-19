@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:04:53 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/06/22 10:15:01 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:30:34 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include <strings.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <string.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -41,6 +44,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_isnum(char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_lstsize(t_list *lst);

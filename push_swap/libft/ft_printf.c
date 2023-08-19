@@ -6,12 +6,11 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:31:40 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/06 12:58:36 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/10 22:14:29 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 #include <limits.h>
 
 int	checksnull(char *str)
@@ -79,10 +78,4 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	return (len);
-}
-
-int main()
-{
-	char str[] = "hello world";
-	printf("%s\n", str);
 }

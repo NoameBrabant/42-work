@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 12:04:53 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/03/15 12:00:27 by nbrabant         ###   ########.fr       */
+/*   Created: 2023/08/11 11:48:47 by nbrabant          #+#    #+#             */
+/*   Updated: 2023/08/11 14:05:57 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_PRINTF_H
 
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <strings.h>
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <string.h>
-#endif
+int	ft_isnum(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
