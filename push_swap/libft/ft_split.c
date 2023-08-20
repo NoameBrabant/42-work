@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:05:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/12 11:00:00 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:27:06 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	**ft_loop(unsigned int i, char const *s, char c, char **tab)
 		{
 			tab[y] = ft_substr(s, pos, i - pos);
 			if (!tab[y])
-			{	
+			{
 				i = 0;
 				while (i < y)
 					free (tab[i]);

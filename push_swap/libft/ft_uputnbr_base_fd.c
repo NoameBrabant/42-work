@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/19 21:32:30 by schapuis          #+#    #+#             */
-/*   Updated: 2023/06/22 10:32:01 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:26:02 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	nbr_final_size(unsigned long nbr, int size_base)
 }
 
 void	writenbr(int i, char *base, int *nbr_final, int fd)
-{		
+{
 	while (--i >= 0)
 		ft_putchar_fd(base[nbr_final[i]], fd);
 	free(nbr_final);

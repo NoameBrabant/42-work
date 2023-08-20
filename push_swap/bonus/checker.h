@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 11:48:47 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:27:27 by nbrabant         ###   ########.fr       */
+/*   Created: 2023/08/20 14:00:37 by nbrabant          #+#    #+#             */
+/*   Updated: 2023/08/20 18:15:24 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-int	ft_isnum(char *str)
-{
-	int	i;
+# include "../get_next_line/get_next_line.h"
+# include "../libft/libft.h"
+# include "../pushswap/pushswap.h"
 
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
+#endif

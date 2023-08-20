@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 14:21:12 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/11 16:34:08 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:24:38 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_atoi(const char *nptr)
 		i++;
 	while (ft_isdigit(nptr[i]))
 	{
-		if ((sign == 1 && (res * 10 + nptr[i] - '0') > INT_MAX) ||
-			(sign == -1 && ((res * 10 + nptr[i] - '0') * (- 1))  
-			< INT_MIN))
-			return ('\0');	
+		if ((sign == 1 && (res * 10 + nptr[i] - '0') > INT_MAX) 
+			|| (sign == -1 
+				&& ((res * 10 + nptr[i] - '0') * (-1)) < INT_MIN))
+			return ('\0');
 		res = res * 10 + nptr[i] - '0';
 		i++;
 	}

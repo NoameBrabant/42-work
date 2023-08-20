@@ -6,12 +6,11 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/13 10:29:35 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:12:27 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-#include "libft/libft.h"
 
 void	ft_error(void)
 {
@@ -29,7 +28,7 @@ int	ft_get_length(char **str)
 	return (i);
 }
 
-int *ft_splitnumbers(char *input)
+int	*ft_splitnumbers(char *input)
 {
 	char	**temp;
 	int		*output;
@@ -48,7 +47,7 @@ int *ft_splitnumbers(char *input)
 		}
 		output[i] = ft_atoi(temp[i]);
 		if (output[i] == '\0')
-		{			
+		{
 			free(output);
 			ft_error();
 		}
@@ -59,8 +58,8 @@ int *ft_splitnumbers(char *input)
 
 void	ft_istwin(int *tab)
 {
-	int i;
-	int y;
+	int	i;
+	int	y;
 
 	y = 0;
 	while (tab[y])
@@ -68,7 +67,7 @@ void	ft_istwin(int *tab)
 		i = y + 1;
 		while (tab[i])
 		{
-			if(tab[y] == tab[i])
+			if (tab[y] == tab[i])
 			{
 				free(tab);
 				ft_error();
@@ -86,25 +85,21 @@ int	*ft_create_list_numbers(int size_input, char **input)
 
 	i = 0;
 	if (size_input == 2)
-	{
 		output = ft_splitnumbers(input[1]);
-	}
 	else
 	{
 		output = ft_calloc(size_input, sizeof(int));
 		while (input[i + 1])
 		{
 			if (ft_isnum(input[i + 1]) == 0)
-			{	
 				free(output);
+			if (ft_isnum(input[i + 1]) == 0)
 				ft_error();
-			}
 			output[i] = ft_atoi(input[i + 1]);
 			if (output[i] == '\0')
-			{			
 				free(output);
+			if (output[i] == '\0')
 				ft_error();
-			} 
 			i++;
 		}
 	}

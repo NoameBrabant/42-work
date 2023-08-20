@@ -6,20 +6,20 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:14:55 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/16 11:00:09 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:18:43 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	ft_free_lst(node_t **s_table, int toggle)
+void	ft_free_lst(t_node **s_table, int toggle)
 {
-	node_t *current;
-	node_t *temp;
-	int 	i;
+	t_node	*current;
+	t_node	*temp;
+	int		i;
 
 	i = 0;
-	while  (s_table[i])
+	while (s_table[i])
 	{
 		current = s_table[i]->next;
 		while (current != s_table[i])
@@ -36,9 +36,9 @@ void	ft_free_lst(node_t **s_table, int toggle)
 		ft_error();
 }
 
-int ft_lst_max (node_t *head)
+int	ft_lst_max(t_node *head)
 {
-	node_t	*current;
+	t_node	*current;
 	int		max;
 
 	max = INT_MIN;
@@ -54,9 +54,9 @@ int ft_lst_max (node_t *head)
 	return (max);
 }
 
-int ft_lst_min (node_t *head)
+int	ft_lst_min(t_node *head)
 {
-	node_t	*current;
+	t_node	*current;
 	int		min;
 
 	min = INT_MAX;
@@ -72,10 +72,10 @@ int ft_lst_min (node_t *head)
 	return (min);
 }
 
-int	ft_lst_find_min(node_t *head, int min)
+int	ft_lst_find_min(t_node *head, int min)
 {
-	node_t	*current;
-	int 	count;
+	t_node	*current;
+	int		count;
 
 	count = 1;
 	current = head;
@@ -89,10 +89,10 @@ int	ft_lst_find_min(node_t *head, int min)
 	return (count + 1);
 }
 
-int	ft_lst_find_max(node_t *head, int max)
+int	ft_lst_find_max(t_node *head, int max)
 {
-	node_t	*current;
-	int 	count;
+	t_node	*current;
+	int		count;
 
 	count = 1;
 	current = head;

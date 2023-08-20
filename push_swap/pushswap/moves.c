@@ -6,17 +6,17 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:34:00 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/16 14:11:06 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:19:06 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-node_t	*swap(node_t *head, char stack)
+t_node	*swap(t_node *head, char stack, int toggle)
 {
-	node_t	*last;
-	node_t	*third;
-	node_t	*new_head;
+	t_node	*last;
+	t_node	*third;
+	t_node	*new_head;
 
 	last = head->previous;
 	third = head->next->next;
@@ -25,62 +25,48 @@ node_t	*swap(node_t *head, char stack)
 	new_head->next = head;
 	head->next = third;
 	head->previous = new_head;
-	last->next =new_head;
+	last->next = new_head;
 	third->previous = head;
-	if (stack != 'r')
+	if (stack != 'r' && toggle == 1)
 		ft_printf("s%c\n", stack);
 	return (new_head);
 }
 
-node_t	**ss(node_t **s_table)
+t_node	**ss(t_node **s_table, int toggle)
 {
-	s_table[0] = swap(s_table[0], 'r');
-	s_table[1] = swap(s_table[1], 'r');
-	ft_printf("rr\n");
+	s_table[0] = swap(s_table[0], 'r', toggle);
+	s_table[1] = swap(s_table[1], 'r', toggle);
+	if (toggle == 1)
+		ft_printf("rr\n");
 	return (s_table);
 }
 
-node_t	**push(node_t *src_h, node_t *rec_h, node_t **s_table, char stack)
+t_node	**push(t_node **s_table, char s, int t)
 {
-	node_t	*temp;
-	node_t 	*new_head_src;
-	node_t 	*new_head_rec;
+	t_node	*src_h;
+	t_node	*rec_h;
 
-	if (ft_lst_size(s_table[1]) == 1)
+	if (s == 'a')
 	{
-		s_table[1]->next = rec_h;
-		s_table[1]->previous = rec_h->previous;
-		s_table[1]->previous->next = s_table[1];
-		rec_h->previous = s_table[1];
-		s_table[0] = s_table[1];
-		s_table[1] = NULL;
-		ft_printf("pa\n");
-		return (s_table);
+		src_h = s_table[1];
+		rec_h = s_table[0];
 	}
-	temp = rec_h->previous;
-	src_h->previous->next = src_h->next;
-	src_h->next->previous = src_h->previous;
-	new_head_src = src_h->next;
-	rec_h->previous->next = src_h;
-	rec_h->previous = src_h;
-	src_h->next = rec_h;
-	src_h->previous = temp;
-	new_head_rec = src_h;
-	if (src_h == s_table[1])	
-	{	
-		s_table[1] = new_head_src;
-		s_table[0] = new_head_rec;
+	else if (s == 'b')
+	{
+		rec_h = s_table[1];
+		src_h = s_table[0];
 	}
-	else
-	{	
-		s_table[0] = new_head_src;
-		s_table[1] = new_head_rec;
-	}
-	ft_printf("p%c\n", stack);
+	if (s_table[1] == NULL)
+		return (push1(src_h, s_table, 'b', t));
+	else if (ft_lst_size(s_table[1]) == 1 && s == 'a')
+		return (push2(rec_h, s_table, t));
+	s_table = push3(rec_h, src_h, s_table);
+	if (t == 1)
+		ft_printf("p%c\n", s);
 	return (s_table);
 }
 
-node_t	**rota(node_t **s_table, char stack)
+t_node	**rota(t_node **s_table, char stack, int toggle)
 {
 	if (stack == 'a')
 		s_table[0] = s_table[0]->next;
@@ -89,13 +75,14 @@ node_t	**rota(node_t **s_table, char stack)
 	else if (stack == 'r')
 	{
 		s_table[0] = s_table[0]->next;
-		s_table[1] = s_table[1]->next;	
+		s_table[1] = s_table[1]->next;
 	}
-	ft_printf("r%c\n", stack);
+	if (toggle == 1)
+		ft_printf("r%c\n", stack);
 	return (s_table);
 }
 
-node_t	**rev_rota(node_t **s_table, char stack)
+t_node	**rev_rota(t_node **s_table, char stack, int toggle)
 {
 	if (stack == 'a')
 		s_table[0] = s_table[0]->previous;
@@ -106,6 +93,7 @@ node_t	**rev_rota(node_t **s_table, char stack)
 		s_table[0] = s_table[0]->previous;
 		s_table[1] = s_table[1]->previous;
 	}
-	ft_printf("rr%c\n", stack);
+	if (toggle == 1)
+		ft_printf("rr%c\n", stack);
 	return (s_table);
 }

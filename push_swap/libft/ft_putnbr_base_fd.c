@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schapuis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/08/19 21:32:30 by schapuis          #+#    #+#             */
-/*   Updated: 2023/06/22 10:33:16 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:26:49 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_base(char *base)
 long long	check_neg(long long nbr, int fd)
 {
 	if (nbr < 0)
-	{			
+	{
 		ft_putchar_fd('-', fd);
 		return (-nbr);
 	}

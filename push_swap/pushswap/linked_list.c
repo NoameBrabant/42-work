@@ -6,18 +6,18 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:15:09 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/16 19:26:06 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:14:03 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-node_t	*create_linked_list(int *numbers)
+t_node	*create_linked_list(int *numbers)
 {
-	node_t	*head;
-	node_t	*current;
-	node_t	*temp;
-	int 	i;
+	t_node	*head;
+	t_node	*current;
+	t_node	*temp;
+	int		i;
 
 	i = 1;
 	current = NULL;
@@ -25,7 +25,7 @@ node_t	*create_linked_list(int *numbers)
 	head = lst_init(numbers[0]);
 	while (numbers[i])
 	{
-		current = malloc(sizeof(node_t));
+		current = malloc(sizeof(t_node));
 		current->value = numbers[i++];
 		if (head->next == NULL)
 			temp = head;
@@ -34,28 +34,27 @@ node_t	*create_linked_list(int *numbers)
 		temp = current;
 	}
 	if (head->next != NULL)
-	{	
-		head->previous = current;
 		current->next = head;
-	}
+	if (head->next != NULL)
+		head->previous = current;
 	free(numbers);
 	return (head);
 }
 
-node_t	*lst_init(int first_value)
+t_node	*lst_init(int first_value)
 {
-	node_t	*head;
+	t_node	*head;
 
-	head = malloc(sizeof(node_t));
+	head = malloc(sizeof(t_node));
 	head->value = first_value;
 	head->next = NULL;
 	head->previous = NULL;
 	return (head);
 }
 
-node_t	**lst_init_b(node_t **s_table)
+t_node	**lst_init_b(t_node **s_table)
 {
-	node_t	*new_head;
+	t_node	*new_head;
 
 	new_head = s_table[0]->next->next;
 	s_table[0]->previous->next = new_head;
@@ -67,4 +66,3 @@ node_t	**lst_init_b(node_t **s_table)
 	ft_printf("pb\npb\n");
 	return (s_table);
 }
-

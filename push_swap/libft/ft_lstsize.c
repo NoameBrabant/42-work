@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:15:49 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/02/17 16:03:48 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:25:00 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_lstsize(t_list *lst)
 	i = 0;
 	while (lst)
 	{
-			i++;
-			lst = lst->next;
+		i++;
+		lst = lst->next;
 	}
 	return (i);
 }

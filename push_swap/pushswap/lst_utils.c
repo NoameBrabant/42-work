@@ -6,15 +6,15 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:34:30 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/16 11:03:04 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:31:31 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "pushswap.h"
+#include "pushswap.h"
 
-int	ft_lst_size(node_t	*head)
+int	ft_lst_size(t_node	*head)
 {
-	node_t	*current;
+	t_node	*current;
 	int		size;
 
 	current = head;
@@ -28,10 +28,10 @@ int	ft_lst_size(node_t	*head)
 	return (size);
 }
 
-void	ft_print_linked_list(node_t *head)
+void	ft_print_linked_list(t_node *head)
 {
-	node_t	*current;
-	
+	t_node	*current;
+
 	current = head;
 	while (current->next != head)
 	{
@@ -39,19 +39,18 @@ void	ft_print_linked_list(node_t *head)
 		current = current->next;
 	}
 	ft_printf("%d\n", current->value);
-
 }
 
-int	ft_issort(node_t *head)
+int	ft_issort(t_node *head)
 {
-	node_t *current;
+	t_node	*current;
 
 	current = head;
-	while(current->next != head)
+	while (current->next != head)
 	{
 		if (current->value > current->next->value)
 			return (0);
-		current =  current->next; 
+		current = current->next; 
 	}
 	return (1);
 }
