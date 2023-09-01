@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:12:27 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:54:51 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	*ft_splitnumbers(char *input)
 			ft_error();
 		}
 		output[i] = ft_atoi(temp[i]);
-		if (output[i] == '\0')
+		if (output[i] == '\0' && temp[i][0] != '0')
 		{
 			free(output);
 			ft_error();
@@ -96,9 +96,9 @@ int	*ft_create_list_numbers(int size_input, char **input)
 			if (ft_isnum(input[i + 1]) == 0)
 				ft_error();
 			output[i] = ft_atoi(input[i + 1]);
-			if (output[i] == '\0')
+			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != 0)
 				free(output);
-			if (output[i] == '\0')
+			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != 0)
 				ft_error();
 			i++;
 		}
