@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/01 19:54:51 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/01 20:00:42 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int	*ft_create_list_numbers(int size_input, char **input)
 			if (ft_isnum(input[i + 1]) == 0)
 				ft_error();
 			output[i] = ft_atoi(input[i + 1]);
-			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != 0)
+			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != '0')
 				free(output);
-			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != 0)
+			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != '0')
 				ft_error();
 			i++;
 		}

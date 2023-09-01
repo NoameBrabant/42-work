@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 21:00:30 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:10:13 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:04:48 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_node	**stack_table;
 
 	if (argc == 1)
-		ft_error();
+		exit(0);
 	numbers = ft_create_list_numbers(argc, argv);
 	stack_table = ft_calloc(3, sizeof(t_node));
 	stack_table[0] = create_linked_list(numbers);
