@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:51:32 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 17:12:03 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:48:23 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int draw_fractal(t_fractal fractal, char *prompt, double cx, double cy)
 		while (fractal.y < fractal.sizeY)
 		{
 			if (ft_strncmp(prompt, "mandel", 7) == 0)
-				calculate_mandelbrot(fractal);
+				ft_mandelbrot(fractal);
 			else if (ft_strncmp(prompt, "julia", 6) == 0)
-				calculate_julia(fractal, cx, cy);
+				ft_julia(fractal, cx, cy);
 			else
 		 	{
 				ft_putendl_fd("Available fractals: mandel, julia", 1);
@@ -56,5 +56,6 @@ int	main(int argc, char **argv)
 	fractal.win = mlx_new_window(fractal.mlx, 500, 500, "Hello World!");	
 	fractal.img = mlx_new_image(fractal.mlx, fractal.sizeX, fractal.sizeY);
 	fractal.addr = mlx_get_data_addr(fractal.img, &fractal.bits_per_pixel, &fractal.line_length, &fractal.endian);
+	draw_fractal(fractal, argv[1], fractal.cy, fractal.cx);
 	mlx_loop(fractal.mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:52:15 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 16:49:27 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:49:02 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #include "mlx_linux/mlx.h"
 #include "mlx_linux/mlx_int.h"
-#include "limits.h"
+#include "libft/libft.h"
+#include <limits.h>
+#include <unistd.h>
 
 typedef struct fractal
 {
@@ -42,5 +44,7 @@ typedef struct fractal
 	void	*mlx;
 }			t_fractal;
 
+void	ft_mandelbrot(t_fractal fractal);
+void ft_julia(t_fractal fractal, double cx, double cy);
 
 #endif

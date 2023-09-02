@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+         #
+#    By: tremy <tremy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 17:53:32 by nbrabant          #+#    #+#              #
-#    Updated: 2023/08/31 13:41:09 by nbrabant         ###   ########.fr        #
+#    Updated: 2023/09/02 17:51:06 by tremy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,15 @@ FLAG 		= 	-Wall -Werror -Wextra mlx_linux/libmlx.a -lXext -lX11 -lm -lbsd
 
 SRC			=	$(shell ls *.c)
 
-OBJ			=	$(SRC:.c=.o)
+LIBFT 		=   $(shell ls libft/*.c)
+
+OBJ			=	$(LIBFT:.c=.o) $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C mlx_linux
+	make -C libft
 	gcc -Wall -Wextra -Werror $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
@@ -29,8 +32,10 @@ $(NAME): $(OBJ)
 
 clean:
 		rm -f $(OBJ)
+		make -s -C libft clean
 
 fclean: clean
 		rm -f $(NAME)
+		make -s -C libft fclean
 
 re:		fclean all
