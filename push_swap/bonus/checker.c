@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:42:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:21:43 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 12:29:21 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 t_node	**makemoves2(char *str, t_node **s_table)
 {
-	if (ft_strncmp(str, "rb\n", 3) == 0)
+	if (ft_strncmp(str, "rb\n", 3) == 0 && s_table[1])
 		s_table = rota(s_table, 'b', 0);
-	else if (ft_strncmp(str, "rr\n", 3) == 0)
+	else if (ft_strncmp(str, "rr\n", 3) == 0 && s_table[1])
 		s_table = rota(s_table, 'r', 0);
 	else if (ft_strncmp(str, "rra\n", 4) == 0)
 		s_table = rev_rota(s_table, 'a', 0);
-	else if (ft_strncmp(str, "rrb\n", 4) == 0)
+	else if (ft_strncmp(str, "rrb\n", 4) == 0 && s_table[1])
 		s_table = rev_rota(s_table, 'b', 0);
-	else if (ft_strncmp(str, "rrr\n", 4) == 0)
+	else if (ft_strncmp(str, "rrr\n", 4) == 0 && s_table[1])
 		s_table = rev_rota(s_table, 'r', 0);
 	else
 	{
@@ -34,7 +34,7 @@ t_node	**makemoves2(char *str, t_node **s_table)
 
 t_node	**makemoves(char *str, t_node **s_table)
 {
-	if (ft_strncmp(str, "pa\n", 3) == 0)
+	if (ft_strncmp(str, "pa\n", 3) == 0 && s_table[1])
 		s_table = push(s_table, 'a', 0);
 	else if (ft_strncmp(str, "pb\n", 3) == 0)
 		s_table = push(s_table, 'b', 0);
@@ -52,18 +52,31 @@ t_node	**makemoves(char *str, t_node **s_table)
 	return (s_table);
 }
 
+t_node	**ft_init_checker(int argc, char **argv)
+{
+	int		*numbers;
+	t_node	**stack_table;
+	int		len;
+
+	if (argc == 2)
+		len = 1;
+	else
+		len = argc - 1;
+	numbers = ft_create_list_numbers(&len, argv);
+	stack_table = ft_calloc(3, sizeof(t_node));
+	stack_table[0] = create_linked_list(numbers, len);
+	stack_table[1] = NULL;
+	return (stack_table);
+}
+
 int	main(int argc, char **argv)
 {
 	char	*current;
-	int		*numbers;
 	t_node	**stack_table;
 
 	if (argc == 1)
-		ft_error();
-	numbers = ft_create_list_numbers(argc, argv);
-	stack_table = ft_calloc(3, sizeof(t_node));
-	stack_table[0] = create_linked_list(numbers);
-	stack_table[1] = NULL;
+		exit(0);
+	stack_table = ft_init_checker(argc, argv);
 	current = get_next_line(0);
 	while (current)
 	{

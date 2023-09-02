@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/01 20:00:42 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/02 11:48:56 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	ft_get_length(char **str)
 	return (i);
 }
 
-int	*ft_splitnumbers(char *input)
+int	*ft_splitnumbers(char *input, int *len)
 {
 	char	**temp;
 	int		*output;
 	int		i;
 
 	i = 0;
-	temp = ft_split(input, ' ');
+	temp = ft_split(input, ' ', len);
 	i = 0;
 	output = ft_calloc(ft_get_length(temp) + 1, sizeof(int));
 	while (temp[i])
@@ -53,6 +53,7 @@ int	*ft_splitnumbers(char *input)
 		}
 		i++;
 	}
+	ft_free_tab(temp);
 	return (output);
 }
 
@@ -78,18 +79,18 @@ void	ft_istwin(int *tab)
 	}
 }
 
-int	*ft_create_list_numbers(int size_input, char **input)
+int	*ft_create_list_numbers(int *len, char **input)
 {
 	int		*output;
 	int		i;
 
 	i = 0;
-	if (size_input == 2)
-		output = ft_splitnumbers(input[1]);
+	if (*len == 1)
+		output = ft_splitnumbers(input[1], len);
 	else
 	{
-		output = ft_calloc(size_input, sizeof(int));
-		while (input[i + 1])
+		output = ft_calloc(*len + 1, sizeof(int));
+		while (i + 1 <= *len)
 		{
 			if (ft_isnum(input[i + 1]) == 0)
 				free(output);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+         #
+#    By: tremy <tremy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 17:53:32 by nbrabant          #+#    #+#              #
-#    Updated: 2023/08/20 17:05:00 by nbrabant         ###   ########.fr        #
+#    Updated: 2023/09/02 12:10:20 by tremy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ CHECKER		=	bonus/checker.c 		\
 				pushswap/lst_utils.c	\
 				pushswap/lst_utils2.c	\
 				pushswap/parsing.c 		\
+				pushswap/parsing2.c		\
 				pushswap/moves2.c 		\
 				$(shell ls libft/*.c)
 
