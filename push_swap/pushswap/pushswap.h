@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:29:58 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:09:17 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:50:29 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct node
 	struct node	*next;
 }	t_node;
 
-int		*ft_create_list_numbers(int size_input, char **input);
+int		*ft_create_list_numbers(int *len, char **input);
 int		ft_get_length(char **str);
 void	ft_error(void);
 t_node	**ss(t_node **s_table, int toggle);
@@ -41,7 +41,7 @@ int		ft_lst_size(t_node	*head);
 t_node	*ft_node_insert(t_node *head, int value);
 t_node	*ft_node_delete(t_node *head);
 void	ft_free_lst(t_node **s_table, int toggle);
-t_node	*create_linked_list(int *numbers);
+t_node	*create_linked_list(int *numbers, int len);
 t_node	*lst_init(int first_value);
 t_node	**rota(t_node **s_table, char stack, int toggle);
 t_node	**rev_rota(t_node **s_table, char stack, int toggle);
@@ -71,5 +71,6 @@ t_node	**ft_sort_b(t_node **s_table);
 t_node	**ft_sort_end_a(t_node **s_table);
 int		pos_finder(t_node *head, int value);
 int		ft_check_init(t_node **stack_table);
+void	ft_free_tab(char **tab);
 
 #endif

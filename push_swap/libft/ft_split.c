@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:05:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:27:06 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:44:25 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static char	**ft_loop(unsigned int i, char const *s, char c, char **tab)
 			{
 				i = 0;
 				while (i < y)
+				{
 					free (tab[i]);
+					i++;
+				}
 				return (NULL);
 			}
 			y++;
@@ -64,7 +67,7 @@ static char	**ft_loop(unsigned int i, char const *s, char c, char **tab)
 	return (tab);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, int *len)
 {
 	char			**tab;
 	unsigned int	i;
@@ -72,7 +75,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	tab = (char **)ft_calloc((wordcounter(s, c) + 1), sizeof(char *));
+	*len = wordcounter(s, c);
+	tab = (char **)ft_calloc(*len + 1, sizeof(char *));
 	if (tab == NULL)
 		return (NULL);
 	tab = ft_loop(i, s, c, tab);

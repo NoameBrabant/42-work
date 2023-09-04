@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:15:09 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/08/20 18:14:03 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/02 10:53:08 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-t_node	*create_linked_list(int *numbers)
+t_node	*create_linked_list(int *numbers, int len)
 {
 	t_node	*head;
 	t_node	*current;
@@ -23,7 +23,7 @@ t_node	*create_linked_list(int *numbers)
 	current = NULL;
 	temp = NULL;
 	head = lst_init(numbers[0]);
-	while (numbers[i])
+	while (i < len)
 	{
 		current = malloc(sizeof(t_node));
 		current->value = numbers[i++];
