@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:42:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 11:40:40 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 12:34:22 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_node	**makemoves2(char *str, t_node **s_table)
 	else
 	{
 		free(str);
+		str = NULL;
 		ft_free_lst(s_table, 0);
 	}
 	return (s_table);
@@ -49,6 +50,7 @@ t_node	**makemoves(char *str, t_node **s_table)
 	else
 		s_table = makemoves2(str, s_table);
 	free(str);
+	str = NULL;
 	return (s_table);
 }
 

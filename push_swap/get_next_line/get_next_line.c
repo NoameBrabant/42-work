@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:18:16 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 12:02:47 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 12:46:31 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*restnextline(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash = NULL;
 	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -107,5 +107,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	res = putnextline(stash);
 	stash = restnextline(stash);
+	if (ft_strchr_gnl(stash, '\n') == 0)
+	{
+		free(stash);
+		stash = NULL;
+	}
 	return (res);
 }
