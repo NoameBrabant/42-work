@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 21:00:30 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 14:01:03 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:05:44 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		len = 1;
 	else
 		len = argc - 1;
-	numbers = ft_create_list_numbers(&len, argv);
+	numbers = ft_create_list_numbers(&len, argv, 0);
 	if (len == 1)
 		exit(0);
 	stack_table = ft_calloc(3, sizeof(t_node));

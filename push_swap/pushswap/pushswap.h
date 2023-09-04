@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:29:58 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 14:01:01 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:05:43 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct node
 	struct node	*next;
 }	t_node;
 
-int		*ft_create_list_numbers(int *len, char **input);
+int		*ft_create_list_numbers(int *len, char **input, int i);
 int		ft_get_length(char **str);
 void	ft_error(void);
 t_node	**ss(t_node **s_table, int toggle);
@@ -72,5 +72,6 @@ t_node	**ft_sort_end_a(t_node **s_table);
 int		pos_finder(t_node *head, int value);
 int		ft_check_init(t_node **stack_table);
 void	ft_free_tab(char **tab, int toggle);
+int		ft_is_zero(char *str, size_t len);
 
 #endif
