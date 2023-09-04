@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 21:00:30 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 12:30:27 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 15:57:26 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		len = 1;
 	else
 		len = argc - 1;
-	numbers = ft_create_list_numbers(&len, argv);
+	numbers = ft_create_list_numbers(&len, argv, 0);
 	if (len == 1)
 		exit(0);
 	stack_table = ft_calloc(3, sizeof(t_node));

@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 12:36:23 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 15:57:06 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	*ft_splitnumbers(char *input, int *len)
 			ft_free_tab(temp, 1);
 		}
 		output[i] = ft_atoi(temp[i]);
-		if (output[i] == '\0' && temp[i][0] != '0')
+		if (output[i] == '\0' && !ft_is_zero(temp[i], (int)ft_strlen(temp[i])))
 		{
 			free(output);
 			ft_free_tab(temp, 1);
@@ -57,16 +57,16 @@ int	*ft_splitnumbers(char *input, int *len)
 	return (output);
 }
 
-void	ft_istwin(int *tab)
+void	ft_istwin(int *tab, int len)
 {
 	int	i;
 	int	y;
 
 	y = 0;
-	while (tab[y])
+	while (y < len)
 	{
 		i = y + 1;
-		while (tab[i])
+		while (i < len)
 		{
 			if (tab[y] == tab[i])
 			{
@@ -79,12 +79,10 @@ void	ft_istwin(int *tab)
 	}
 }
 
-int	*ft_create_list_numbers(int *len, char **input)
+int	*ft_create_list_numbers(int *len, char **input, int i)
 {
 	int		*output;
-	int		i;
 
-	i = 0;
 	if (*len == 1)
 		output = ft_splitnumbers(input[1], len);
 	else
@@ -97,13 +95,15 @@ int	*ft_create_list_numbers(int *len, char **input)
 			if (ft_isnum(input[i + 1]) == 0)
 				ft_error();
 			output[i] = ft_atoi(input[i + 1]);
-			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != '0')
+			if (ft_atoi(input[i + 1]) == '\0' 
+				&& !ft_is_zero(input[i + 1], ft_strlen(input[i + 1])))
 				free(output);
-			if (ft_atoi(input[i + 1]) == '\0' && input[i + 1][0] != '0')
+			if (ft_atoi(input[i + 1]) == '\0' 
+				&& !ft_is_zero(input[i + 1], ft_strlen(input[i + 1])))
 				ft_error();
 			i++;
 		}
 	}
-	ft_istwin(output);
+	ft_istwin(output, *len);
 	return (output);
 }
