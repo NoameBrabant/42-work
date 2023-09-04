@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:18:16 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 12:46:31 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 14:40:40 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	res = putnextline(stash);
 	stash = restnextline(stash);
-	if (ft_strchr_gnl(stash, '\n') == 0)
+	if (stash && !stash[0])
 	{
 		free(stash);
 		stash = NULL;
