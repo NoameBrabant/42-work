@@ -6,21 +6,23 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 11:46:39 by tremy             #+#    #+#             */
-/*   Updated: 2023/09/02 12:08:03 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 12:26:51 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void    ft_free_tab(char **tab)
+void	ft_free_tab(char **tab, int toggle)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	if (toggle == 1)
+		ft_error();
 }

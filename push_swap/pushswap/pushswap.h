@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:29:58 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 11:50:29 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 11:04:04 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ t_node	**ft_sort_b(t_node **s_table);
 t_node	**ft_sort_end_a(t_node **s_table);
 int		pos_finder(t_node *head, int value);
 int		ft_check_init(t_node **stack_table);
-void	ft_free_tab(char **tab);
+void	ft_free_tab(char **tab, int toggle);
 
 #endif

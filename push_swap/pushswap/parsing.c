@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 11:48:56 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 11:07:05 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ int	*ft_splitnumbers(char *input, int *len)
 		if (ft_isnum(temp[i]) == 0)
 		{
 			free(output);
-			ft_error();
+			ft_free_tab(temp, 1);
 		}
 		output[i] = ft_atoi(temp[i]);
 		if (output[i] == '\0' && temp[i][0] != '0')
 		{
 			free(output);
-			ft_error();
+			ft_free_tab(temp, 1);
 		}
 		i++;
 	}
-	ft_free_tab(temp);
+	ft_free_tab(temp, 0);
 	return (output);
 }
 

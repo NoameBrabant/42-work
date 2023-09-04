@@ -6,7 +6,7 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:05:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 11:44:25 by tremy            ###   ########.fr       */
+/*   Updated: 2023/09/04 12:27:23 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ static char	**ft_loop(unsigned int i, char const *s, char c, char **tab)
 			if (!tab[y])
 			{
 				i = 0;
-				while (i < y)
-				{
+				while (i++ < y)
 					free (tab[i]);
-					i++;
-				}
 				return (NULL);
 			}
 			y++;
