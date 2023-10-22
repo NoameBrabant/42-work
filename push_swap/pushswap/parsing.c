@@ -6,11 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 07:53:38 by nbrabant          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/04 15:40:59 by nbrabant         ###   ########.fr       */
-=======
-/*   Updated: 2023/09/04 15:57:06 by tremy            ###   ########.fr       */
->>>>>>> 2b74ec77d1135ff8d7a073c4ab977ccb897b7b64
+/*   Updated: 2023/09/04 16:10:34 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +46,7 @@ int	*ft_splitnumbers(char *input, int *len)
 			ft_free_tab(temp, 1);
 		}
 		output[i] = ft_atoi(temp[i]);
-		if (output[i] == '\0' && !ft_is_zero(temp[i], (int)ft_strlen(temp[i])))
+		if (output[i] == '\0' && !ft_is_zero(temp[i], ft_strlen(temp[i])))
 		{
 			free(output);
 			ft_free_tab(temp, 1);

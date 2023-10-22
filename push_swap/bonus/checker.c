@@ -6,7 +6,7 @@
 /*   By: nbrabant <nbrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:42:21 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/04 14:00:31 by nbrabant         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:12:28 by nbrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_node	**ft_init_checker(int argc, char **argv)
 		len = 1;
 	else
 		len = argc - 1;
-	numbers = ft_create_list_numbers(&len, argv);
+	numbers = ft_create_list_numbers(&len, argv, 0);
 	stack_table = ft_calloc(3, sizeof(t_node));
 	stack_table[0] = create_linked_list(numbers, len);
 	stack_table[1] = NULL;

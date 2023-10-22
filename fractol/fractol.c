@@ -6,56 +6,51 @@
 /*   By: tremy <tremy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:51:32 by nbrabant          #+#    #+#             */
-/*   Updated: 2023/09/02 17:48:23 by tremy            ###   ########.fr       */
+/*   Updated: 2023/10/07 09:41:09 by tremy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	my_mlx_pixel_put(t_fractal *data, int x, int y, int color)
+int	draw_fractal(t_fractal fractal, char *prompt)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-int draw_fractal(t_fractal fractal, char *prompt, double cx, double cy)
-{
-	fractal.x = 0;
-	fractal.y = 0;
-	while (fractal.x < fractal.sizeY)
-	{
-		while (fractal.y < fractal.sizeY)
-		{
-			if (ft_strncmp(prompt, "mandel", 7) == 0)
-				ft_mandelbrot(fractal);
-			else if (ft_strncmp(prompt, "julia", 6) == 0)
-				ft_julia(fractal, cx, cy);
-			else
-		 	{
-				ft_putendl_fd("Available fractals: mandel, julia", 1);
-				exit_fractal(fractal);
-		 	}
-			fractal.y++;
-		}
-		fractal.x++;
-		fractal.y = 0;
-	}
+	if (ft_strncmp(prompt, "mandel", 7) == 0)
+		ft_draw_mandelbrot(fractal);
+	else if (ft_strncmp(prompt, "julia", 6) == 0)
+		ft_draw_julia(fractal);
+	else if (ft_strncmp(prompt, "burning_ship", 13) == 0)
+		ft_draw_burning_ship(fractal);
+	else
+		ft_error(&fractal);
 	mlx_put_image_to_window(fractal.mlx, fractal.win, fractal.img, 0, 0);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_fractal	fractal;
-	if (argc != 2)
-		ft_exit_fractal();
-	
-	fractal.mlx = mlx_init();
-	fractal.win = mlx_new_window(fractal.mlx, 500, 500, "Hello World!");	
-	fractal.img = mlx_new_image(fractal.mlx, fractal.sizeX, fractal.sizeY);
-	fractal.addr = mlx_get_data_addr(fractal.img, &fractal.bits_per_pixel, &fractal.line_length, &fractal.endian);
-	draw_fractal(fractal, argv[1], fractal.cy, fractal.cx);
-	mlx_loop(fractal.mlx);
+	t_fractal	*fractal;
+	double		cx;
+	double		cy;
+
+	cx = 0.0;
+	cy = 0.0;
+	fractal = malloc(sizeof(t_fractal));
+	fractal->mlx = NULL;
+	if (argc == 4 && ft_strncmp(argv[1], "julia", 6) == 0)
+	{
+		cx = ft_atof(argv[2], fractal);
+		cy = ft_atof(argv[3], fractal);
+	}
+	else if (argc != 2 || (ft_strncmp(argv[1], "julia", 6) != 0
+			&& ft_strncmp(argv[1], "mandel", 7) != 0
+			&& ft_strncmp(argv[1], "burning_ship", 13) != 0))
+		ft_error(fractal);
+	init_fractal(fractal, argv[1], cx, cy);
+	init_mlx(fractal);
+	mlx_key_hook(fractal->win, ft_keyboard_hook, fractal);
+	mlx_mouse_hook(fractal->win, ft_mouse_hook, fractal);
+	mlx_hook(fractal->win, 17, 0L, ft_exit_fractal, fractal);
+	draw_fractal(*fractal, argv[1]);
+	mlx_loop(fractal->mlx);
+	return (0);
 }
